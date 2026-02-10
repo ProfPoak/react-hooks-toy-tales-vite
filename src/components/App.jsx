@@ -34,6 +34,12 @@ function App() {
     setToys([...toys, toyData])
   }
 
+  function handleUpdateToy(updatedToy) {
+    setToys(toys.map(toy => 
+      toy.id === updatedToy.id ? updatedToy : toy
+    ))
+  }
+
   return (
     <>
       <Header />
@@ -41,7 +47,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer toys={toys} />
+      <ToyContainer toys={toys} onUpdateToy={handleUpdateToy} />
     </>
   );
 }
