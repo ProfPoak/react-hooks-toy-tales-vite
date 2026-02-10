@@ -1,26 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ToyCard from "./ToyCard";
 
-function ToyContainer() {
-  const [toys, setToys] = useState([])
-
-  useEffect(() => {
-    fetch("http://localhost:3001/toys")
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        else {
-          console.log("Error: could not load toys")
-        }
-      })
-      .then(data => {
-        setToys(data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }, [])
+function ToyContainer({ toys }) {
 
   return (
     <div id="toy-collection">{toys.map(toy => (
