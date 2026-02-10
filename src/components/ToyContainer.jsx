@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ToyCard from "./ToyCard";
 
-function ToyContainer({ toys, onUpdateToy }) {
+function ToyContainer({ toys, onUpdateToy, onDeleteToy }) {
 
   return (
     <div id="toy-collection">{toys.map(toy => (
@@ -12,6 +12,7 @@ function ToyContainer({ toys, onUpdateToy }) {
         image={toy.image}
         likes={toy.likes}
         onUpdateToy={onUpdateToy}
+        onDeleteToy={onDeleteToy}
       />
     ))}
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 
-function ToyCard({ id, name, image, likes, onUpdateToy }) {
+function ToyCard({ id, name, image, likes, onUpdateToy, onDeleteToy }) {
+  
   function handleLikeClick() {
     
     const updatedLikes = {
@@ -27,6 +28,24 @@ function ToyCard({ id, name, image, likes, onUpdateToy }) {
     })
     .catch(error => console.log(error))
   }
+
+  function handleDeleteClick() {
+    fetch(`http://localhost:3001/toys/${id}`, {
+      method: "DELETE"
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+      else {
+        console.log("Unable to donate toy")
+      }
+    })
+    .then(deletedToy => {
+      onDeleteToy(deletedToy)
+    })
+    .catch(error => console.log(error))
+  }
   
   return (
     <div className="card" data-testid="toy-card">
@@ -38,7 +57,7 @@ function ToyCard({ id, name, image, likes, onUpdateToy }) {
       />
       <p>{likes} Likes </p>
       <button className="like-btn" onClick={handleLikeClick}>Like {"<3"}</button>
-      <button className="del-btn">Donate to GoodWill</button>
+      <button className="del-btn" onClick={handleDeleteClick}>Donate to GoodWill</button>
     </div>
   );
 }
