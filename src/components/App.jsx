@@ -40,9 +40,9 @@ function App() {
     ))
   }
 
-  function handleDeleteToy(deletedToy) {
+  function handleDeleteToy(id) {
     setToys(toys.filter(toy =>
-      toy.id !== deletedToy.id
+      toy.id !== id
     ))
   }
 

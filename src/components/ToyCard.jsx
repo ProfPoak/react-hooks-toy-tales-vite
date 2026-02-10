@@ -35,14 +35,11 @@ function ToyCard({ id, name, image, likes, onUpdateToy, onDeleteToy }) {
     })
     .then(response => {
       if (response.ok) {
-        return response.json()
+        onDeleteToy(id)
       }
       else {
         console.log("Unable to donate toy")
       }
-    })
-    .then(deletedToy => {
-      onDeleteToy(deletedToy)
     })
     .catch(error => console.log(error))
   }
